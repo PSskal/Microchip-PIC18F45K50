@@ -34,17 +34,16 @@ void configuration(void){
     ANSELA = 0XFF;
     
     //CONFIGURACION DEL MODULO ADC    
+    ADCON0bits.ADON = 1;     // HABILITAR EL MODULO ADC
     ADCON1bits.PVCFG0 = 0;       //VDD DE REFERENCIA
     ADCON1bits.NVCFG0 = 0;       //VSS DE REFERENCIA 
     ADCON2bits.ADFM = 1;     // JUSTIFICACION A LA DERECHA
-    ADCON2bits.ADCS = 1;     // FOSC/8 como VELOCIDAD DE CONVERSION
-    ADCON2bits.ACQT = 2;     // TIEMPO DE ADQUISICION de 4 TAD 
-    ADCON0bits.ADON = 1;     // HABILITAR EL MODULO ADC
+    ADCON2bits.ADCS = 4;     // FOSC/4 como VELOCIDAD DE CONVERSION
+    ADCON2bits.ACQT = 4;     // TIEMPO DE ADQUISICION de 8 TAD 
 }
 
 int ADC_Read(unsigned char channel) {
     ADCON0bits.CHS = channel;       // SELECCIONAR el canal de ENTRADA ANALAOGICA
-    ADCON0bits.ADON = 1;            // HABILITAR EL MODULO ADC
     ADCON0bits.GO = 1;              // INICIAR LA CONVERSION
     
     while (ADCON0bits.GO);          // ESPERAR QUE LA CONVERSION COMPLETE
@@ -58,7 +57,6 @@ void LCD_init(void){
     BORRAR_LCD();
     CURSOR_HOME();
     CURSOR_ONOFF(OFF);
-    LATCbits.LC2 = 1;
 }
 
 void convierte(float numero) {
@@ -84,7 +82,7 @@ int main(int argc, char** argv) {
 
      while (1) {
         adcValue = ADC_Read(0);      // Leer el valor DEL canal 0 (AN0)
-        temperatura = (500.0*adcValue)/1023;
+        temperatura = (3.8*adcValue*100)/1023;     // voltaje de referecnia alimentado pic
         POS_CURSOR(2,0);
         ESCRIBE_MENSAJE("TEMP:");
         convierte(temperatura);

@@ -22,14 +22,15 @@ void CONFIG_Init(void){
     
 }
 
-int main(int argc, char** argv) {
+void main(void) {
     CONFIG_Init();
-    EUSART_Init();
+    EUSART_Init(); 
     while(1){
-       PORTD = EUSART_Rx();
+      
+       LATD = EUSART_Rx();
        
     }
     
-    return (EXIT_SUCCESS);
+    return;
 }
 

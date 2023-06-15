@@ -26,14 +26,10 @@ void CONFIG_Init(void){
 int main(int argc, char** argv) {
     CONFIG_Init();
     EUSART_Init();
+    
     while(1){
-        EUSART_Cadena("por estar avansando en usart, se me olvidé enviar el foro");
-        __delay_ms(1000);
-        EUSART_Cadena("me olvide que habia puesto en guardar");
-        __delay_ms(1000);
-        EUSART_Cadena("kaaluuuun");
-        __delay_ms(1000);
-        
+        EUSART_Cadena("esto es una transmicion por bluethoo");
+        __delay_ms(1000);      
        
     }
     

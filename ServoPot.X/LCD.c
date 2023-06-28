@@ -174,8 +174,8 @@ void LEER_LCD(void)
 // Función para mostrar un valor entero en el display
 void DISPLAY_INT_VALUE(int value)
 {
-    char buffer[17];
-    sprintf(buffer, "%d", value);
+    char buffer[6];
+    sprintf(buffer, "%d ", value);
     ESCRIBE_MENSAJE(buffer, strlen(buffer));
 }
 
@@ -183,7 +183,7 @@ void DISPLAY_INT_VALUE(int value)
 void DISPLAY_FLOAT_VALUE(float value, int decimalPlaces)
 {
     char buffer[17];
-    sprintf(buffer, "%.*f", decimalPlaces, value);
+    sprintf(buffer, "%.*f ", decimalPlaces, value);
     ESCRIBE_MENSAJE(buffer, strlen(buffer));
 }
 

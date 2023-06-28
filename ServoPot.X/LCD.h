@@ -3,10 +3,10 @@
 
 #define ON  0
 #define OFF 1
-#define RS  LATDbits.LATD0
-#define RW  LATDbits.LATD1
-#define E   LATDbits.LATD2
-#define _XTAL_FREQ 4000000UL
+#define RS  LATEbits.LATE0
+#define RW  LATEbits.LATE1
+#define E   LATEbits.LATE2
+#define _XTAL_FREQ 8000000UL
 
 void POS_CURSOR(unsigned char fila,unsigned char columna);
 void DISPLAY_ONOFF(unsigned char estado);
